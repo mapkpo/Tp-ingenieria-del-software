@@ -1,25 +1,10 @@
 # Pong
 
-## Recreating Pong using Java 
+https://drive.google.com/drive/folders/1aoHKunj3fMuHrh10rXfOI_m_sZGkhvHD?usp=sharing
 
-### I decide to use the Java Programming Language on Eclipse's IDE because of Java's native features like:
+Integrantes:
 
-* import java.awt.Color;
-* import java.awt.Graphics;
-* import java.awt.Rectangle;
-* import java.util.Random;
-
-### and the main class was extended by Canvas and implemented by Runnable and KeyListener, anothers Java's natives features.
-### This and another things makes easier to make graphics with Java than with anothers programming languages.
-
-
-<p align="center">
-  <img width="100%" height="100%" src="https://github.com/diegolrs/Pong/blob/master/Pong/project_demo.gif">
-  Project Demonstration
-</p>
-
-<p align="center">
-  <br><br><br>
-  <a>Created by</a>
-  <a href="https://github.com/diegolrs">Diego Reis</a>
-</p>
+Bevilacqua Francisco
+Cernich Manuel
+Cisneros Tomás
+Potinski Mijail
