@@ -5,6 +5,9 @@ https://drive.google.com/drive/folders/1aoHKunj3fMuHrh10rXfOI_m_sZGkhvHD?usp=sha
 Integrantes:
 
 Bevilacqua Francisco
+
 Cernich Manuel
+
 Cisneros Tomás
+
 Potinski Mijail
