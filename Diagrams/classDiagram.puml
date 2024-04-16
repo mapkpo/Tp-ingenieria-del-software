@@ -1,0 +1,74 @@
+@startuml classDiagram
+
+hide circle
+
+class Ball {
+    - x: double
+    - y: double
+    - dx: double
+    - dy: double
+    - angle: double
+    - SPEED: final double
+    - WIDTH: final int
+    - HEIGHT: final int
+    + Ball()
+    + tick(): void
+    + render(g: Graphics): void
+}
+
+class Enemy {
+    - x: double
+    - y: int
+    - DIFFICULTY: final double
+    + Enemy(x: int, y: int)
+    + tick(): void
+    + render(g: Graphics): void
+}
+
+class Game {
+    - isRunning: boolean
+    - bs: BufferStrategy
+    - image: BufferedImage
+    - player: Player
+    - enemy: Enemy
+    - ball: Ball
+    - WIDTH: final int
+    - HEIGHT: final int
+    - SCALE: final int
+    - SPEED: final int
+    - FPS: final int
+    - ns: final long
+    - lastTime: long
+    - rightPressedPlayer: boolean
+    - leftPressedPlayer: boolean
+    + main(args: String[]): void
+    + start(): void
+    + startFrame(frame: JFrame): void
+    + tick(): void
+    + render(): void
+    + startBufferStrategy(bs: BufferStrategy): void
+    + run(): void
+    + keyTyped(e: KeyEvent): void
+    + keyPressed(e: KeyEvent): void
+    + keyReleased(e: KeyEvent): void
+}
+
+class Player {
+    - WIDTH: final int
+    - HEIGHT: final int
+    - x: int
+    - y: int
+    + Player(x: int, y: int)
+    + rightPressed(): void
+    + leftPressed(): void
+    + tick(): void
+    + render(g: Graphics): void
+}
+
+Ball --|> Game
+Enemy --|> Player
+Game *--> Ball
+Game *--> Player
+Game *--> Enemy
+
+@enduml
