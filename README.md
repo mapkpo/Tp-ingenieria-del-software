@@ -4,10 +4,10 @@ Trabajo Practico Ingenieria de Software - FCEFyN
 
 ## Integrantes
 
-Bevilacqua, Francisco
-Gil Cernich, Manuel
-Cisneros, Tomás
-Potinski, Mijail
+- Bevilacqua, Francisco
+- Gil Cernich, Manuel
+- Cisneros, Tomás
+- Potinski, Mijail
 
 ---
 
