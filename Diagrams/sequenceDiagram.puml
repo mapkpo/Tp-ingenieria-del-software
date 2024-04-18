@@ -56,9 +56,12 @@ deactivate Enemy
 ' Player scores a point
 Game -> Ball: tick()
 activate Ball
-Ball -> Ball: y >= Game.HEIGHT
-Ball -> Ball: System.out.println("Enemy's point!")
-Ball -> Game: new Game().start()
+alt y >= Game.HEIGHT
+    Ball -> Ball: System.out.println("Player's point!")
+    Ball -> Game: new Game().start()
+else
+    Ball -> Ball: continue game
+end
 deactivate Ball
 
 

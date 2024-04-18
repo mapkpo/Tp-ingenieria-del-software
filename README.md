@@ -30,6 +30,20 @@ Pong es un juego de arcade clásico en el que dos jugadores controlan paletas en
 
 ---
 
+<p align="center">
+  <img src="imgs/classDiagram.png" alt="Diagrama de clases"><br>
+  <em>Fig 1. Diagrama de clases.</em>
+</p>
+
+---
+
+<p align="center">
+  <img src="imgs/sequenceDiagram.png" alt="Diagrama de secuencias"><br>
+  <em>Fig 2. Ejemplo de ejecucion.</em>
+</p>
+
+---
+
 ## Anexo
 
 - [Drive del grupo](https://drive.google.com/drive/folders/1aoHKunj3fMuHrh10rXfOI_m_sZGkhvHD?usp=sharing)
