@@ -1,0 +1,65 @@
+@startuml sequenceDiagram
+
+participant Game
+participant Player
+participant Enemy
+participant Ball
+
+' Game setup and initialization
+activate Game
+Game -> Game: main(String[])
+Game -> Game: start()
+Game -> Player: new Player()
+activate Player
+Player -> Player: tick()
+Player -> Player: render(Graphics)
+deactivate Player
+Game -> Enemy: new Enemy()
+activate Enemy
+Enemy -> Enemy: tick()
+Enemy -> Enemy: render(Graphics)
+deactivate Enemy
+Game -> Ball: new Ball()
+activate Ball
+Ball -> Ball: tick()
+Ball -> Ball: render(Graphics)
+deactivate Ball
+Game -> Game: startFrame(JFrame)
+Game -> Game: run()
+Game -> Game: tick()
+
+
+' Player moves right
+Game -> Player: keyPressed(KeyEvent)
+activate Player
+Player -> Player: rightPressed()
+Player -> Player: tick()
+Player -> Player: render(Graphics)
+deactivate Player
+
+' Ball moves
+Game -> Ball: tick()
+activate Ball
+Ball -> Ball: tick()
+Ball -> Ball: render(Graphics)
+Game -> Game: tick()
+deactivate Ball
+
+' Enemy moves
+Game -> Enemy: tick()
+activate Enemy
+Enemy -> Enemy: tick()
+Enemy -> Enemy: render(Graphics)
+Game -> Game: tick()
+deactivate Enemy
+
+' Player scores a point
+Game -> Ball: tick()
+activate Ball
+Ball -> Ball: y >= Game.HEIGHT
+Ball -> Ball: System.out.println("Enemy's point!")
+Ball -> Game: new Game().start()
+deactivate Ball
+
+
+@enduml
