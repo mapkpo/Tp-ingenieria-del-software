@@ -15,6 +15,12 @@ public class Ball {
 	private final int WIDTH = 5;
 	private final int HEIGHT = 5;
 	
+	/**
+	 * @brief Represents a ball in the Pong game.
+	 * 
+	 * The ball has an starting, and a starting angle of movement.
+	 * The ball's position is initialized to the center of the game window.
+	 */
 	Ball(){
 		this.x = Game.WIDTH/2;
 		this.y = 40;
@@ -29,20 +35,25 @@ public class Ball {
 		this.dy = Math.sin(Math.toRadians(angle));
 	}
 	
+	
+	/**
+	 * @brief Updates the position and behavior of the ball in the game.
+	 * 
+	 * This method is called in each game tick to move the ball, check for collisions,
+	 * and handle scoring.
+	 */
 	public void tick(){
 		
 		x +=  dx * SPEED;
 		y += dy * SPEED;
 		
-		// Ball Outside	
+		/* Check if there is a point */
 		if(y >= Game.HEIGHT)
 		{
-			//Ponto do inimigo.
 			System.out.println("Enemy's point!");
 			new Game().start();
 			return;
 		}else if(y <= 0) {
-			//Ponto do jogador.
 			System.out.println("Player's point");
 			new Game().start();
 			return;
@@ -51,7 +62,8 @@ public class Ball {
 		if(x<=0 || x>=Game.WIDTH - WIDTH)
 			dx*= -1;
 		
-		// Colisions
+		
+		/* Check if the ball hits the side walls. */
 		Rectangle bounds = new Rectangle((int)x,(int)y,WIDTH,HEIGHT);
 		Rectangle boundsPlayer = new Rectangle(Game.player.x, Game.player.y, Game.player.WIDTH, Game.player.HEIGHT);
 		Rectangle boundsEnemy = new Rectangle((int)Game.enemy.x, Game.enemy.y, Game.player.WIDTH, Game.player.HEIGHT);
@@ -84,6 +96,13 @@ public class Ball {
 		
 	}
 	
+
+	/**
+     * @brief Method to render the ball on the screen.
+     * 
+	 * It calls the tick method and then sets the color and fills a rectangle representing the ball.
+     * @param g Graphics object used for rendering
+     */
 	public void render(Graphics g){
 		tick();
 		g.setColor(new Color(255, 255, 255));

@@ -9,6 +9,11 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+/**
+ * The `Game` class represents the main game logic and functionality.
+ * It extends the `Canvas` class and implements the `Runnable` and `KeyListener` interfaces.
+ * The game is responsible for rendering the game objects, handling user input, and updating the game state.
+ */
 public class Game extends Canvas implements Runnable, KeyListener{
 	
 	boolean isRunning = false;
@@ -32,6 +37,15 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	private boolean rightPressedPlayer = false;
 	private boolean leftPressedPlayer = false;
 	
+
+	/**
+	 * @brief The main entry point for the Pong game.
+	 * 
+	 * Creates a new instance of the Game class, starts a new thread for the game loop,
+	 * and initializes the game frame.
+	 *
+	 * @param args The command line arguments.
+	 */
 	public static void main(String[] args) {
 		Game game = new Game();
 		Thread thread = new Thread(game);
@@ -42,12 +56,26 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		thread.start();
 	}
 	
+
+	/**
+	 * @brief The Game class represents the main game window.
+	 * 
+	 * It extends the JPanel class and implements the KeyListener interface.
+	 */
 	Game(){
 		this.setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		this.addKeyListener(this);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
 	}
 	
+
+	/**
+	 * @brief Sets up the game
+	 * 
+	 * Starts the game by initializing the player, enemy, and ball objects.
+	 * 
+	 * This method should be called before any game logic is executed.
+	 */
 	public synchronized void start() {
 		player = new Player(100, 155);
 		enemy = new Enemy(100, 0);
@@ -55,6 +83,14 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		isRunning = true;
 	}
 	
+
+	/**
+	 * @brief Sets the game panel 
+	 * 
+	 * Adds the game panel to the specified JFrame, configures the frame, and makes it visible.
+	 * 
+	 * @param frame the JFrame to start the game in
+	 */
 	public void startFrame(JFrame frame) {
 		frame.add(this);
 		frame.pack();
@@ -64,6 +100,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		frame.setVisible(true);
 	}
 	
+	
+	/**
+	 * @brief Updates the game state for each frame.
+	 * 
+	 * If the right arrow key is pressed, the player moves to the right.
+	 * If the left arrow key is pressed, the player moves to the left.
+	 */
 	public void tick() {
 		if(rightPressedPlayer) {		
 			player.rightPressed();	
@@ -73,6 +116,10 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 	
+
+	/**
+	 * @brief Renders the game by drawing the game elements on the screen.
+	 */
 	public void render() {
 		bs = this.getBufferStrategy();
 		
@@ -98,6 +145,13 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	}
 	
 	
+	/**
+	 * @brief Starts the buffer strategy for rendering the game.
+	 * 
+	 * Buffer strategy is used to avoid flickering in the game rendering.
+	 * 
+	 * @param bs the buffer strategy to start
+	 */
 	public void startBufferStrategy(BufferStrategy bs) {
 		if(bs == null) {
 			this.createBufferStrategy(3);	
@@ -107,6 +161,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		bs.show();
 	}
 	
+
+	/**
+	 * @brief main game loop
+	 * 
+	 * Runs the game loop, continuously updating and rendering the game.
+	 */
 	public void run() {
 		while(isRunning) {
 			this.requestFocus();
@@ -121,11 +181,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 		
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		
-	}
 
+	/**
+	 * @brief Invoked when a key is pressed.
+	 * 
+	 * @param e the KeyEvent object representing the key event
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
@@ -134,12 +195,31 @@ public class Game extends Canvas implements Runnable, KeyListener{
 			leftPressedPlayer = true;
 	}
 
+
+	/**
+	 * @brief Invoked when a key is released.
+	 * 
+	 * @param e the KeyEvent object containing information about the key event
+	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
 			rightPressedPlayer = false;
 		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			leftPressedPlayer = false;
+		
+	}
+
+
+	/**
+	 * @brief Invoked when a key is typed. 
+	 * 
+	 * This method is not used in this implementation.
+	 *
+	 * @param e the KeyEvent object containing information about the key event
+	 */
+	@Override
+	public void keyTyped(KeyEvent e) {
 		
 	}
 	
