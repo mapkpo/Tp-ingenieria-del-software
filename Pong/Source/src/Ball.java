@@ -11,9 +11,9 @@ public class Ball {
 	
 	private double angle;
 	
-	private final double SPEED = 0.7;
-	private final int WIDTH = 5;
-	private final int HEIGHT = 5;
+	public final double SPEED = 0.7;
+	public final int WIDTH = 5;
+	public final int HEIGHT = 5;
 	
 	/**
 	 * @brief Represents a ball in the Pong game.
