@@ -21,7 +21,7 @@ public class Player {
      * @param x Initial x-coordinate of the player
      * @param y Initial y-coordinate of the player
      */
-    Player(int x, int y){
+    Player(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -55,10 +55,12 @@ public class Player {
      * It checks if the player is within the game width and adjusts the x-coordinate accordingly.
      */
     public void tick() {
-        if(x + WIDTH > Game.WIDTH)
+        if (x + WIDTH > Game.WIDTH) {
             x--;
-        else if(x < 0) 
+        }
+        else if(x < 0) {
             x++;
+        } 
     }
     
 
