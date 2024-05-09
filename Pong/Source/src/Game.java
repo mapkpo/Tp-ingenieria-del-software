@@ -34,8 +34,8 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	private final long ns = 1000000000/FPS;
 	private long lastTime = System.nanoTime();
 	
-	private boolean rightPressedPlayer = false;
-	private boolean leftPressedPlayer = false;
+	public boolean rightPressedPlayer = false;
+	public boolean leftPressedPlayer = false;
 	
 
 	/**
@@ -113,7 +113,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		} else if (leftPressedPlayer) {
 			player.leftPressed();
 		}
-		
 	}
 	
 

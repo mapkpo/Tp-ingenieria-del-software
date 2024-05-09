@@ -1,4 +1,7 @@
 import org.junit.Test;
+import org.mockito.Mockito;
+import java.awt.Graphics;
+import java.awt.Color;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -51,4 +54,21 @@ public class PlayerTest {
         assertEquals(0, player.x);
     }
 
+    @Test
+    public void testRender() {
+        // Create a mock Graphics object
+        Graphics g = Mockito.mock(Graphics.class);
+
+        // Create a Player object
+        Player player = new Player(0, 0);
+
+        // Call the render method
+        player.render(g);
+
+        // Verify that setColor was called with the correct color
+        Mockito.verify(g).setColor(new Color(255, 255, 255));
+
+        // Verify that fillRect was called with the correct parameters
+        Mockito.verify(g).fillRect(player.x, player.y, player.WIDTH, player.HEIGHT);
+    }
 }

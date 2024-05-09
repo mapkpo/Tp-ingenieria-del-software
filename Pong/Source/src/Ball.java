@@ -122,7 +122,6 @@ public class Ball {
 				dy *= -1;
 			}
 		}
-	
 	}
 
     /**
@@ -137,7 +136,6 @@ public class Ball {
 			System.out.println("Player's point");
 			new Game().start();
 		}
-	
 	}
 	
 	/**

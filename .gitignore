@@ -1,5 +1,31 @@
-# Exclude the target directory
-Pong/target
-
 # Exclude the .vscode directory
 .vscode
+
+# Ignore Maven target directory
+Pong/target/
+
+# Ignore binary files
+Pong/Source/bin/
+
+# Ignore IDE-related files
+*.iml
+.idea/
+
+# Ignore Maven local repository
+.m2/
+
+# Ignore generated files and reports
+Pong/target/
+Pong/site/
+
+# Log file
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
