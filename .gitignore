@@ -29,3 +29,7 @@ Pong/site/
 *.zip
 *.tar.gz
 *.rar
+
+# Ignored project IDE files
+.project
+.classpath
