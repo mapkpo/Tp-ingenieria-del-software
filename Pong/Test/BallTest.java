@@ -9,18 +9,19 @@ import static org.junit.Assert.*;
 
 public class BallTest {
 
+    private Ball ball;
+
     @Before
     public void setUp() {
         // Initialize Game.player and Game.enemy before each test
         Game.player = new Player(100, 155);
         Game.enemy = new Enemy(100, 0);
+        ball = new Ball();
     }
     
 
     @Test
-    public void testBallInitialization() {
-        Ball ball = new Ball();
-        
+    public void testBallInitialization() {         
         // Check initial position
         assertEquals(Game.WIDTH / 2, ball.x, 0.001);
         assertEquals(40, ball.y, 0.001);
@@ -31,9 +32,7 @@ public class BallTest {
     }
 
     @Test
-    public void testBallMovement() {
-        Ball ball = new Ball();
-        
+    public void testBallMovement() {         
         // Save initial position
         double initialX = ball.x;
         double initialY = ball.y;
@@ -48,9 +47,6 @@ public class BallTest {
 
     @Test
     public void testPlayerCollision() {
-        // Initialize the ball
-        Ball ball = new Ball();
-        
         // Set ball position to intersect with player
         ball.x = Game.player.x + Game.player.WIDTH / 2;
         ball.y = Game.player.y - 1;
@@ -68,10 +64,7 @@ public class BallTest {
     }
 
     @Test
-    public void testEnemyCollision() {
-        // Initialize the ball
-        Ball ball = new Ball();
-        
+    public void testEnemyCollision() {         
         // Set ball position to intersect with enemy
         ball.x = Game.enemy.x + Game.enemy.WIDTH / 2;
         ball.y = Game.enemy.y + 1; // Below the enemy paddle
@@ -89,10 +82,7 @@ public class BallTest {
     }
 
     @Test
-    public void testRightWallCollision() {
-        // Initialize the ball
-        Ball ball = new Ball();
-        
+    public void testRightWallCollision() {         
         // Set ball position close to the right wall
         ball.x = Game.WIDTH - ball.WIDTH / 2 - 1; // Position the ball close to the right wall
         ball.y = Game.HEIGHT / 2;
@@ -117,9 +107,6 @@ public class BallTest {
         // Create a mock Graphics object
         Graphics g = Mockito.mock(Graphics.class);
     
-        // Create a Ball object
-        Ball ball = new Ball();
-    
         // Call the render method
         ball.render(g);
     
@@ -131,10 +118,7 @@ public class BallTest {
     }
 
     @Test
-    public void testCheckScoring() {
-        // Create a Ball object
-        Ball ball = new Ball();
-
+    public void testCheckScoring() {  
         // Redirect System.out to a ByteArrayOutputStream so we can check the output
         ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
