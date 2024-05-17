@@ -41,7 +41,8 @@ public class PlayerTest {
     @Test
     public void testTickAtRightBoundary() {
         // Player at right boundary, should move left by 1
-        Player player = new Player(Game.WIDTH - Game.player.WIDTH + 1, 0);
+        //Player player = new Player(Game.WIDTH - Game.player.WIDTH + 1, 0);   //esto genera un problema de autoreferencia ya que busca un dato propio para crearse (CREO)
+        Player player = new Player(201 , 0);
         player.tick();
         assertEquals(Game.WIDTH - player.WIDTH, player.x);
     }
