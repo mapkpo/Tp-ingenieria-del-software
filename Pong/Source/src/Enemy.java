@@ -34,12 +34,13 @@ public class Enemy extends Player{
     public void tick() {
         x = Game.ball.x * DIFFICULTY;
         
-        while(x > Game.WIDTH - super.WIDTH)
+        while(x > Game.WIDTH - super.WIDTH) {
             x--;
+        }
         
-        while(x < 0) 
+        while(x < 0) {
             x++;
-        
+        }
     }
     
 

@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  * It extends the `Canvas` class and implements the `Runnable` and `KeyListener` interfaces.
  * The game is responsible for rendering the game objects, handling user input, and updating the game state.
  */
-public class Game extends Canvas implements Runnable, KeyListener{
+public class Game extends Canvas implements Runnable, KeyListener {
 	
 	boolean isRunning = false;
 	
@@ -34,8 +34,8 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	private final long ns = 1000000000/FPS;
 	private long lastTime = System.nanoTime();
 	
-	private boolean rightPressedPlayer = false;
-	private boolean leftPressedPlayer = false;
+	public boolean rightPressedPlayer = false;
+	public boolean leftPressedPlayer = false;
 	
 
 	/**
@@ -62,7 +62,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 * 
 	 * It extends the JPanel class and implements the KeyListener interface.
 	 */
-	Game(){
+	Game() {
 		this.setPreferredSize(new Dimension(WIDTH*SCALE, HEIGHT*SCALE));
 		this.addKeyListener(this);
 		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);
@@ -108,12 +108,11 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 * If the left arrow key is pressed, the player moves to the left.
 	 */
 	public void tick() {
-		if(rightPressedPlayer) {		
+		if (rightPressedPlayer) {		
 			player.rightPressed();	
 		} else if (leftPressedPlayer) {
 			player.leftPressed();
 		}
-		
 	}
 	
 
@@ -123,7 +122,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	public void render() {
 		bs = this.getBufferStrategy();
 		
-		if(bs == null) {
+		if (bs == null) {
 			this.createBufferStrategy(3);
 			return;
 		}
@@ -153,7 +152,7 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 * @param bs the buffer strategy to start
 	 */
 	public void startBufferStrategy(BufferStrategy bs) {
-		if(bs == null) {
+		if (bs == null) {
 			this.createBufferStrategy(3);	
 			return;
 		}
@@ -168,17 +167,16 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 * Runs the game loop, continuously updating and rendering the game.
 	 */
 	public void run() {
-		while(isRunning) {
+		while (isRunning) {
 			this.requestFocus();
 			long now = System.nanoTime();
 			
-			if(now - lastTime >= ns/SPEED) {
+			if (now - lastTime >= ns/SPEED) {
 				tick();
 				render();				
 				lastTime = now;
 			}			
-		}
-		
+		}	
 	}
 
 
@@ -189,10 +187,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			rightPressedPlayer = true;
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			leftPressedPlayer = true;
+		}	
 	}
 
 
@@ -203,11 +203,12 @@ public class Game extends Canvas implements Runnable, KeyListener{
 	 */
 	@Override
 	public void keyReleased(KeyEvent e) {
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 			rightPressedPlayer = false;
-		else if (e.getKeyCode() == KeyEvent.VK_LEFT)
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 			leftPressedPlayer = false;
-		
+		}
 	}
 
 
