@@ -37,7 +37,7 @@ public class Ball {
 	 */
 	Ball() {
 		this.x = Game.WIDTH/2;
-		this.y = 40;
+		this.y = Game.HEIGHT/2;
 		
 		initializeAngle();
 	}
@@ -182,7 +182,7 @@ public class Ball {
 	 */
 	private void resetBall() {
 		this.x = Game.WIDTH/2;
-		this.y = 40;
+		this.y = Game.HEIGHT/2;
 		initializeAngle();
 	}
 
@@ -197,5 +197,13 @@ public class Ball {
 		g.setColor(new Color(255, 255, 255));
 		g.fillRect((int)x, (int)y, WIDTH, HEIGHT);
 	}
+
+	public int getPlayerScore() {
+        return playerScore;
+    }
+    
+    public int getEnemyScore() {
+        return enemyScore;
+    }
 	
 }
