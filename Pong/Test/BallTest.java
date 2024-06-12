@@ -3,6 +3,7 @@ import org.mockito.Mockito;
 import java.awt.Graphics;
 import java.awt.Color;
 import org.junit.Before;
+
 import static org.junit.Assert.*;
 
 public class BallTest {
@@ -22,7 +23,7 @@ public class BallTest {
     public void testBallInitialization() {         
         // Check initial position
         assertEquals(Game.WIDTH / 2, ball.x, 0.001);
-        assertEquals(40, ball.y, 0.001);
+        assertEquals(Game.HEIGHT / 2, ball.y, 0.001);
         
         // Check initial direction
         assertTrue(ball.dx >= -1 && ball.dx <= 1);
