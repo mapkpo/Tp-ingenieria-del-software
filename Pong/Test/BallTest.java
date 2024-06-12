@@ -3,8 +3,7 @@ import org.mockito.Mockito;
 import java.awt.Graphics;
 import java.awt.Color;
 import org.junit.Before;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
+
 import static org.junit.Assert.*;
 
 public class BallTest {
@@ -24,7 +23,7 @@ public class BallTest {
     public void testBallInitialization() {         
         // Check initial position
         assertEquals(Game.WIDTH / 2, ball.x, 0.001);
-        assertEquals(40, ball.y, 0.001);
+        assertEquals(Game.HEIGHT / 2, ball.y, 0.001);
         
         // Check initial direction
         assertTrue(ball.dx >= -1 && ball.dx <= 1);
@@ -119,21 +118,24 @@ public class BallTest {
 
     @Test
     public void testCheckScoring() {  
-        // Redirect System.out to a ByteArrayOutputStream so we can check the output
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
+        // Set up mock observer
+        ScoreObserver observer = Mockito.mock(ScoreObserver.class);
+        ball.addObserver(observer);
 
-        // Set the ball's y-coordinate to a value greater than Game.HEIGHT and call checkScoring
+        // Test enemy score
         ball.y = Game.HEIGHT + 1;
         ball.checkScoring();
-        assertTrue(outContent.toString().contains("Enemy's point!"));
+        assertEquals(1, ball.getEnemyScore());
+        assertEquals(0, ball.getPlayerScore());
+        Mockito.verify(observer).updateScore(0, 1);
 
-        // Reset the ByteArrayOutputStream
-        outContent.reset();
-
-        // Set the ball's y-coordinate to a value less than 0 and call checkScoring
+        // Test player score
         ball.y = -1;
         ball.checkScoring();
-        assertTrue(outContent.toString().contains("Player's point"));
+        assertEquals(1, ball.getPlayerScore());
+        assertEquals(1, ball.getEnemyScore());
+        Mockito.verify(observer).updateScore(1, 1);
     }
+
+    
 }

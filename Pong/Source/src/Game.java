@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  * It extends the `Canvas` class and implements the `Runnable` and `KeyListener` interfaces.
  * The game is responsible for rendering the game objects, handling user input, and updating the game state.
  */
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener, ScoreObserver {
 	
 	boolean isRunning = false;
 	
@@ -36,6 +36,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	
 	public boolean rightPressedPlayer = false;
 	public boolean leftPressedPlayer = false;
+
+	private int playerScore = 0;
+    private int enemyScore = 0;
 	
 
 	/**
@@ -80,6 +83,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		player = new Player(100, 155);
 		enemy = new Enemy(100, 0);
 		ball = new Ball();
+		ball.addObserver(this);
 		isRunning = true;
 	}
 	
@@ -121,27 +125,41 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	 */
 	public void render() {
 		bs = this.getBufferStrategy();
-		
+	
 		if (bs == null) {
 			this.createBufferStrategy(3);
 			return;
 		}
-		
+	
 		Graphics g = image.getGraphics();
-		
+	
 		// Background
 		g.setColor(new Color(0, 0, 0));
 		g.fillRect(0, 0, WIDTH, HEIGHT);
-		
+	
 		player.render(g);
 		ball.render(g);
 		enemy.render(g);
-		
+	
+		// Draw horizontal dotted line in the middle
+		g.setColor(Color.WHITE);
+		for (int x = 0; x < WIDTH; x += 10) {
+			g.fillRect(x, HEIGHT/2, 5, 1); // Draw a short white line at intervals of 10 pixels
+		}
+	
+    	// Draw player score above the line
+    	g.drawString(String.valueOf(playerScore), WIDTH/2-5, HEIGHT/2+15);
+
+    	// Draw enemy score below the line
+    	g.drawString(String.valueOf(enemyScore), WIDTH/2-5, HEIGHT/2-5);
+	
 		g = bs.getDrawGraphics();
-		
+	
 		g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 		bs.show();
 	}
+	
+	
 	
 	
 	/**
@@ -223,5 +241,18 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public void keyTyped(KeyEvent e) {
 		
 	}
+
+	/**
+	 * @brief Updates the player and enemy scores.
+	 * 
+	 * Overrides the updateScore method from the ScoreObserver interface.
+	 * 
+	 * @param playerScore the player's score
+	 */
+	@Override
+    public void updateScore(int playerScore, int enemyScore) {
+        this.playerScore = playerScore;
+        this.enemyScore = enemyScore;
+    }
 	
 }

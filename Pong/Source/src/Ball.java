@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
@@ -11,6 +13,7 @@ import java.util.Random;
  * The ball's position is initialized to the center of the game window.
  */
 public class Ball {
+
 	public double x;
 	public double y;
 	public double dx;
@@ -21,6 +24,10 @@ public class Ball {
 	public final double SPEED = 0.7;
 	public final int WIDTH = 5;
 	public final int HEIGHT = 5;
+
+	private List<ScoreObserver> observers = new ArrayList<>();
+    private int playerScore = 0;
+    private int enemyScore = 0;
 	
 	/**
 	 * @brief Represents a ball in the Pong game.
@@ -30,7 +37,7 @@ public class Ball {
 	 */
 	Ball() {
 		this.x = Game.WIDTH/2;
-		this.y = 40;
+		this.y = Game.HEIGHT/2;
 		
 		initializeAngle();
 	}
@@ -127,17 +134,58 @@ public class Ball {
     /**
      * @brief Checks for scoring events and handles them accordingly.
      */
-	public void checkScoring() {
-		if (y >= Game.HEIGHT) {
-			System.out.println("Enemy's point!");
-			new Game().start();
-		} 
-		else if (y <= 0) {
-			System.out.println("Player's point");
-			new Game().start();
+    public void checkScoring() {
+        if (y >= Game.HEIGHT) {
+            enemyScore++;
+            notifyObservers();
+            resetBall();
+        } else if (y <= 0) {
+            playerScore++;
+            notifyObservers();
+            resetBall();
+        }
+    }
+
+	/**
+	 * @brief Method to add observers to the list of observers.
+	 * 
+	 * @param observer
+	 */
+	public void addObserver(ScoreObserver observer) {
+		observers.add(observer);
+	}
+
+	/**
+	 * @brief Method to remove observers from the list of observers.
+	 * 
+	 * @param observer
+	 */
+	public void removeObserver(ScoreObserver observer) {
+		observers.remove(observer);
+	}
+
+	/**
+	 * @brief Method to notify observers of the score.
+	 * 
+	 * It calls the updateScore method for each observer in the list of observers.
+	 */
+	private void notifyObservers() {
+		for (ScoreObserver observer : observers) {
+			observer.updateScore(playerScore, enemyScore);
 		}
 	}
 	
+	/**
+	 * @brief Method to reset the ball to its initial position and angle.
+	 * 
+	 * The ball is reset to the center of the game window and a new angle of movement is generated.
+	 */
+	private void resetBall() {
+		this.x = Game.WIDTH/2;
+		this.y = Game.HEIGHT/2;
+		initializeAngle();
+	}
+
 	/**
      * @brief Method to render the ball on the screen.
      * 
@@ -149,5 +197,13 @@ public class Ball {
 		g.setColor(new Color(255, 255, 255));
 		g.fillRect((int)x, (int)y, WIDTH, HEIGHT);
 	}
+
+	public int getPlayerScore() {
+        return playerScore;
+    }
+    
+    public int getEnemyScore() {
+        return enemyScore;
+    }
 	
 }
