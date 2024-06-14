@@ -1,0 +1,10 @@
+<map id="Game" name="Game">
+<area shape="rect" id="node1" title="The Game class represents the main game logic and functionality." alt="" coords="358,171,419,197"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,81,76,108"/>
+<area shape="rect" id="node3" title=" " alt="" coords="101,81,183,108"/>
+<area shape="rect" id="node4" title=" " alt="" coords="207,81,306,108"/>
+<area shape="rect" id="node5" href="$interfaceScoreObserver.html" title="Interface for the observer pattern." alt="" coords="330,81,447,108"/>
+<area shape="rect" id="node6" href="$classEnemy.html" title="Represents an enemy in the Pong game." alt="" coords="565,81,631,108"/>
+<area shape="rect" id="node7" href="$classPlayer.html" title="Represents a player in the Pong game." alt="" coords="480,5,543,32"/>
+<area shape="rect" id="node8" href="$classBall.html" title="Represents a ball in the Pong game." alt="" coords="656,81,703,108"/>
+</map>

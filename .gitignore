@@ -33,3 +33,6 @@ Pong/site/
 # Ignored project IDE files
 .project
 .classpath
+
+# Ignore sonar scanner
+.scannerwork/

@@ -69,6 +69,19 @@
                 </execution>
             </executions>
         </plugin>
+
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>3.2.2</version> <!-- Ensure this version or higher -->
+            <configuration>
+                <archive>
+                    <manifest>
+                        <mainClass>Game</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+        </plugin>
     
     </plugins>
 </build>
