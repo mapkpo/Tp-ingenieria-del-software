@@ -40,6 +40,7 @@ public class Ball {
     public double y;
     public double dx;
     public double dy;
+    private Color color;
 
     private double angle;
 
@@ -49,6 +50,7 @@ public class Ball {
 
     private int playerScore = 0;
     private int enemyScore = 0;
+    private int lastTotalScore = 0; // variable to track the last total score
 
     private List<ScoreObserver> observers = new ArrayList<>();
 
@@ -57,6 +59,7 @@ public class Ball {
         this.y = Game.HEIGHT / 2;
         this.speedStrategy = new InitialSpeedStrategy(); // initial strategy 
         initializeAngle();
+        this.color = Color.WHITE; //default color
     }
 
 
@@ -168,10 +171,11 @@ public class Ball {
 
         // Change speed strategy every 3 points
         int totalScore = playerScore + enemyScore;
-        if (totalScore % 3 == 0) {
+        if (totalScore > lastTotalScore && totalScore % 3 == 0) {
             Random random = new Random();
             int randomNumber = random.nextInt(3) + 1;
             changeSpeedStrategy(randomNumber);
+            lastTotalScore = totalScore; // update the last total score
         }
     }
         /**
@@ -223,7 +227,7 @@ public class Ball {
      */
     public void render(Graphics g) {
         tick();
-        g.setColor(new Color(255, 255, 255));
+        g.setColor(this.color);
         g.fillRect((int) x, (int) y, WIDTH, HEIGHT);
     }
 
@@ -249,13 +253,22 @@ public class Ball {
         switch (level) {
             case 1:
                 this.speedStrategy = new InitialSpeedStrategy();
+                setColor(Color.WHITE);
                 break;
             case 2:
                 this.speedStrategy = new IncreasedSpeedStrategy();
+                setColor(Color.YELLOW);
                 break;
-            default:
+            case 3:
                 this.speedStrategy = new MaxSpeedStrategy();
+                setColor(Color.RED);
                 break;
         }
+    }
+     /**
+     * @brief change ball color
+     */
+    public void setColor(Color color) {
+        this.color = color;
     }
 }
