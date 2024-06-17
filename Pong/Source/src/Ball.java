@@ -5,47 +5,60 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * @brief Represents a ball in the Pong game.
- *
- * The ball has an initial position and a starting angle of movement.
- * The ball's position is initialized to the center of the game window.
- */
+// Interfaz para la estrategia de velocidad
+interface SpeedStrategy {
+    double getSpeed();
+}
+
+// Estrategia de velocidad inicial
+class InitialSpeedStrategy implements SpeedStrategy {
+    @Override
+    public double getSpeed() {
+        return 0.7;
+    }
+}
+
+// Estrategia de velocidad aumentada
+class IncreasedSpeedStrategy implements SpeedStrategy {
+    @Override
+    public double getSpeed() {
+        return 1.0;
+    }
+}
+
+// Estrategia de velocidad máxima
+class MaxSpeedStrategy implements SpeedStrategy {
+    @Override
+    public double getSpeed() {
+        return 1.3;
+    }
+}
+
 public class Ball {
 
-    public double x; 					/**< @brief The x-coordinate of the ball. */
-    public double y; 					/**< @brief The y-coordinate of the ball. */
-    public double dx;					/**< @brief The change in x-coordinate per tick. */
-    public double dy;					/**< @brief The change in y-coordinate per tick. */
+    public double x;
+    public double y;
+    public double dx;
+    public double dy;
 
-    private double angle; 				/**< @brief The angle of movement for the ball. */
+    private double angle;
 
-    public final double SPEED = 0.7; 	/**< @brief The speed of the ball. */
-    public final int WIDTH = 5; 		/**< @brief The width of the ball. */
-    public final int HEIGHT = 5;		/**< @brief The height of the ball. */
+    private SpeedStrategy speedStrategy; // Estrategia de velocidad
+    public final int WIDTH = 5;
+    public final int HEIGHT = 5;
 
-    private int playerScore = 0; 		/**< @brief The player's score. */
-    private int enemyScore = 0;  		/**< @brief The enemy's score. */
-   
-	private List<ScoreObserver> observers = new ArrayList<>(); /**< @brief List of score observers. */
+    private int playerScore = 0;
+    private int enemyScore = 0;
 
-    /**
-     * @brief Constructs a new Ball.
-     * 
-     * The ball's position is initialized to the center of the game window.
-     * The angle of movement is also initialized.
-     */
-    Ball() {
+    private List<ScoreObserver> observers = new ArrayList<>();
+
+    public Ball() {
         this.x = Game.WIDTH / 2;
         this.y = Game.HEIGHT / 2;
+        this.speedStrategy = new InitialSpeedStrategy(); // Estrategia inicial
         initializeAngle();
     }
 
-    /**
-     * @brief Initializes the angle of movement for the ball.
-     *
-     * The angle is randomly generated within a specific range to ensure varied movement.
-     */
     public void initializeAngle() {
         angle = new Random().nextInt(120 - 60) + 61;
 
@@ -57,12 +70,6 @@ public class Ball {
         this.dy = Math.cos(Math.toRadians(angle));
     }
 
-    /**
-     * @brief Updates the position and behavior of the ball in the game.
-     * 
-     * This method is called in each game tick to move the ball, check for collisions,
-     * and handle scoring.
-     */
     public void tick() {
         updatePosition();
         checkWallCollision();
@@ -70,30 +77,17 @@ public class Ball {
         checkScoring();
     }
 
-    /**
-     * @brief Updates the position of the ball based on its velocity.
-     */
     public void updatePosition() {
-        x += dx * SPEED;
-        y += dy * SPEED;
+        x += dx * speedStrategy.getSpeed();
+        y += dy * speedStrategy.getSpeed();
     }
 
-    /**
-     * @brief Checks for collision with the side walls of the game window.
-     * 
-     * If the ball hits the side walls, its horizontal direction is reversed.
-     */
     public void checkWallCollision() {
         if (x <= 0 || x >= Game.WIDTH - WIDTH) {
             dx *= -1;
         }
     }
 
-    /**
-     * @brief Checks for collision with player and enemy paddles.
-     * 
-     * If the ball hits a paddle, its angle of movement is adjusted.
-     */
     public void checkPaddleCollision() {
         Rectangle bounds = new Rectangle((int) x, (int) y, WIDTH, HEIGHT);
         Rectangle boundsPlayer = new Rectangle(Game.player.x, Game.player.y, Game.player.WIDTH, Game.player.HEIGHT);
@@ -106,13 +100,6 @@ public class Ball {
         }
     }
 
-    /**
-     * @brief Adjusts the angle of the ball after a collision with a paddle.
-     * 
-     * The angle is randomly adjusted to ensure varied movement.
-     * 
-     * @param hitByEnemy Indicates if the ball was hit by the enemy paddle.
-     */
     private void adjustAngleAfterPaddleCollision(boolean hitByEnemy) {
         angle = new Random().nextInt(120 - 60) + 61;
 
@@ -130,12 +117,6 @@ public class Ball {
         }
     }
 
-    /**
-     * @brief Checks for scoring events and handles them accordingly.
-     * 
-     * If the ball goes out of bounds, the appropriate player is awarded a point,
-     * and the ball is reset.
-     */
     public void checkScoring() {
         if (y >= Game.HEIGHT) {
             enemyScore++;
@@ -146,31 +127,22 @@ public class Ball {
             notifyObservers();
             resetBall();
         }
+
+        // Cambiar estrategia de velocidad cada 3 puntos
+        int totalScore = playerScore + enemyScore;
+        if (totalScore % 3 == 0) {
+            changeSpeedStrategy(totalScore / 3);
+        }
     }
 
-    /**
-     * @brief Adds an observer to the list of observers.
-     * 
-     * @param observer The observer to add.
-     */
     public void addObserver(ScoreObserver observer) {
         observers.add(observer);
     }
 
-    /**
-     * @brief Removes an observer from the list of observers.
-     * 
-     * @param observer The observer to remove.
-     */
     public void removeObserver(ScoreObserver observer) {
         observers.remove(observer);
     }
 
-    /**
-     * @brief Notifies all observers of a score update.
-     * 
-     * It calls the updateScore method for each observer in the list of observers.
-     */
     private void notifyObservers() {
         for (ScoreObserver observer : observers) {
             observer.updateScore(playerScore, enemyScore);
@@ -218,4 +190,22 @@ public class Ball {
     public int getEnemyScore() {
         return enemyScore;
     }
+
+    private void changeSpeedStrategy(int level) {
+        switch (level) {
+            case 1:
+                this.speedStrategy = new InitialSpeedStrategy();
+                break;
+            case 2:
+                this.speedStrategy = new IncreasedSpeedStrategy();
+                break;
+            default:
+                this.speedStrategy = new MaxSpeedStrategy();
+                break;
+        }
+    }
+
+
+
 }
+
