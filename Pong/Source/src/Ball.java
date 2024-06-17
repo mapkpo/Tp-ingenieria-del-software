@@ -131,7 +131,9 @@ public class Ball {
         // Cambiar estrategia de velocidad cada 3 puntos
         int totalScore = playerScore + enemyScore;
         if (totalScore % 3 == 0) {
-            changeSpeedStrategy(totalScore / 3);
+            Random random = new Random();
+            int randomNumber = random.nextInt(3) + 1;
+            changeSpeedStrategy(randomNumber);
         }
     }
 
