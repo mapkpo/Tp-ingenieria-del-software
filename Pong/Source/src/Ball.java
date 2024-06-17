@@ -10,7 +10,7 @@ interface SpeedStrategy {
     double getSpeed();
 }
 
-// Estrategia de velocidad inicial
+// initial speed strategy
 class InitialSpeedStrategy implements SpeedStrategy {
     @Override
     public double getSpeed() {
@@ -18,7 +18,7 @@ class InitialSpeedStrategy implements SpeedStrategy {
     }
 }
 
-// Estrategia de velocidad aumentada
+// medium speed strategy
 class IncreasedSpeedStrategy implements SpeedStrategy {
     @Override
     public double getSpeed() {
@@ -26,7 +26,7 @@ class IncreasedSpeedStrategy implements SpeedStrategy {
     }
 }
 
-// Estrategia de velocidad máxima
+// max speed strategy
 class MaxSpeedStrategy implements SpeedStrategy {
     @Override
     public double getSpeed() {
@@ -43,7 +43,7 @@ public class Ball {
 
     private double angle;
 
-    private SpeedStrategy speedStrategy; // Estrategia de velocidad
+    private SpeedStrategy speedStrategy; // speed strategy 
     public final int WIDTH = 5;
     public final int HEIGHT = 5;
 
@@ -55,10 +55,16 @@ public class Ball {
     public Ball() {
         this.x = Game.WIDTH / 2;
         this.y = Game.HEIGHT / 2;
-        this.speedStrategy = new InitialSpeedStrategy(); // Estrategia inicial
+        this.speedStrategy = new InitialSpeedStrategy(); // initial strategy 
         initializeAngle();
     }
 
+
+        /**
+     * @brief Initializes the angle of movement for the ball.
+     *
+     * The angle is randomly generated within a specific range to ensure varied movement.
+     */
     public void initializeAngle() {
         angle = new Random().nextInt(120 - 60) + 61;
 
@@ -70,6 +76,12 @@ public class Ball {
         this.dy = Math.cos(Math.toRadians(angle));
     }
 
+    /**
+     * @brief Updates the position and behavior of the ball in the game.
+     * 
+     * This method is called in each game tick to move the ball, check for collisions,
+     * and handle scoring.
+     */
     public void tick() {
         updatePosition();
         checkWallCollision();
@@ -77,17 +89,30 @@ public class Ball {
         checkScoring();
     }
 
+    /**
+     * @brief Updates the position of the ball based on its velocity.
+     */
     public void updatePosition() {
         x += dx * speedStrategy.getSpeed();
         y += dy * speedStrategy.getSpeed();
     }
 
+        /**
+     * @brief Checks for collision with the side walls of the game window.
+     * 
+     * If the ball hits the side walls, its horizontal direction is reversed.
+     */
     public void checkWallCollision() {
         if (x <= 0 || x >= Game.WIDTH - WIDTH) {
             dx *= -1;
         }
     }
 
+        /**
+     * @brief Checks for collision with player and enemy paddles.
+     * 
+     * If the ball hits a paddle, its angle of movement is adjusted.
+     */
     public void checkPaddleCollision() {
         Rectangle bounds = new Rectangle((int) x, (int) y, WIDTH, HEIGHT);
         Rectangle boundsPlayer = new Rectangle(Game.player.x, Game.player.y, Game.player.WIDTH, Game.player.HEIGHT);
@@ -100,6 +125,13 @@ public class Ball {
         }
     }
 
+        /**
+     * @brief Adjusts the angle of the ball after a collision with a paddle.
+     * 
+     * The angle is randomly adjusted to ensure varied movement.
+     * 
+     * @param hitByEnemy Indicates if the ball was hit by the enemy paddle.
+     */
     private void adjustAngleAfterPaddleCollision(boolean hitByEnemy) {
         angle = new Random().nextInt(120 - 60) + 61;
 
@@ -117,6 +149,12 @@ public class Ball {
         }
     }
 
+        /**
+     * @brief Checks for scoring events and handles them accordingly.
+     * 
+     * If the ball goes out of bounds, the appropriate player is awarded a point,
+     * and the ball is reset.
+     */
     public void checkScoring() {
         if (y >= Game.HEIGHT) {
             enemyScore++;
@@ -128,7 +166,7 @@ public class Ball {
             resetBall();
         }
 
-        // Cambiar estrategia de velocidad cada 3 puntos
+        // Change speed strategy every 3 points
         int totalScore = playerScore + enemyScore;
         if (totalScore % 3 == 0) {
             Random random = new Random();
@@ -136,15 +174,29 @@ public class Ball {
             changeSpeedStrategy(randomNumber);
         }
     }
-
+        /**
+     * @brief Adds an observer from the list of observers.
+     * 
+     * @param observer The observer to add.
+     */
     public void addObserver(ScoreObserver observer) {
         observers.add(observer);
     }
 
+    /**
+     * @brief Removes an observer from the list of observers.
+     * 
+     * @param observer The observer to remove.
+     */
     public void removeObserver(ScoreObserver observer) {
         observers.remove(observer);
     }
 
+    /**
+     * @brief Notifies all observers of a score update.
+     * 
+     * It calls the updateScore method for each observer in the list of observers.
+     */
     private void notifyObservers() {
         for (ScoreObserver observer : observers) {
             observer.updateScore(playerScore, enemyScore);
@@ -206,8 +258,4 @@ public class Ball {
                 break;
         }
     }
-
-
-
 }
-
