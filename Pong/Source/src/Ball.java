@@ -5,55 +5,103 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-// Interfaz para la estrategia de velocidad
+/**
+ * @brief Interface for defining speed strategy.
+ * 
+ * This interface defines a method for retrieving the speed value
+ * based on different speed strategy implementations.
+ */
 interface SpeedStrategy {
+    /**
+     * @brief Retrieves the speed value.
+     * 
+     * @return The speed value determined by the strategy.
+     */
     double getSpeed();
 }
 
-// initial speed strategy
+/**
+ * @brief Represents an initial speed strategy.
+ * 
+ * This strategy returns a fixed initial speed value.
+ */
 class InitialSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the initial speed value.
+     * 
+     * @return The initial speed value, which is 0.7.
+     */
     @Override
     public double getSpeed() {
         return 0.7;
     }
 }
 
-// medium speed strategy
+/**
+ * @brief Represents an increased speed strategy.
+ * 
+ * This strategy returns a medium speed value.
+ */
 class IncreasedSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the medium speed value.
+     * 
+     * @return The medium speed value, which is 1.0.
+     */
     @Override
     public double getSpeed() {
         return 1.0;
     }
 }
 
-// max speed strategy
+/**
+ * @brief Represents a maximum speed strategy.
+ * 
+ * This strategy returns a maximum speed value.
+ */
 class MaxSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the maximum speed value.
+     * 
+     * @return The maximum speed value, which is 1.3.
+     */
     @Override
     public double getSpeed() {
         return 1.3;
     }
 }
 
+/**
+ * @brief Represents a ball in a game.
+ * 
+ * The ball moves within the game area, interacts with paddles, 
+ * and tracks scores.
+ */
 public class Ball {
 
-    public double x;
-    public double y;
-    public double dx;
-    public double dy;
-    private Color color;
+    public double x; /**< X-coordinate of the ball's center. */
+    public double y; /**< Y-coordinate of the ball's center. */
+    public double dx; /**< Velocity component in the x-direction.*/
+    public double dy; /**< Velocity component in the y-direction. */
+    private Color color; /**< Color of the ball.*/
 
-    private double angle;
+    private double angle; /**< Angle of movement in degrees. */
 
-    private SpeedStrategy speedStrategy; // speed strategy 
-    public final int WIDTH = 5;
-    public final int HEIGHT = 5;
+    private SpeedStrategy speedStrategy; /**< Strategy for determining the ball's speed. */
+    public final int WIDTH = 5; /**< Width of the ball. */
+    public final int HEIGHT = 5; /**< Height of the ball. */
 
-    private int playerScore = 0;
-    private int enemyScore = 0;
-    private int lastTotalScore = 0; // variable to track the last total score
+    private int playerScore = 0; /**< Player's score. */
+    private int enemyScore = 0; /**< Enemy's score. */
+    private int lastTotalScore = 0; /**< Last total score recorded. */
 
-    private List<ScoreObserver> observers = new ArrayList<>();
+    private List<ScoreObserver> observers = new ArrayList<>(); /**< List of score observers. */
 
+    /**
+     * @brief Constructs a new Ball object.
+     * 
+     * Initializes the ball's position, speed strategy, initial angle, and default color.
+     */
     public Ball() {
         this.x = Game.WIDTH / 2;
         this.y = Game.HEIGHT / 2;
@@ -63,16 +111,16 @@ public class Ball {
     }
 
 
-        /**
+    /**
      * @brief Initializes the angle of movement for the ball.
      *
      * The angle is randomly generated within a specific range to ensure varied movement.
      */
     public void initializeAngle() {
-        angle = new Random().nextInt(120 - 60) + 61;
+        angle = new Random().nextInt(100 - 80 + 1) + 80;
 
-        while (angle < 110 && angle > 70) {
-            angle = new Random().nextInt(120 - 60) + 61;
+        while (angle < 100 && angle > 80) {
+            angle = new Random().nextInt(100 - 80 + 1) + 80;
         }
 
         this.dx = Math.sin(Math.toRadians(angle));
@@ -100,7 +148,7 @@ public class Ball {
         y += dy * speedStrategy.getSpeed();
     }
 
-        /**
+    /**
      * @brief Checks for collision with the side walls of the game window.
      * 
      * If the ball hits the side walls, its horizontal direction is reversed.
@@ -111,7 +159,7 @@ public class Ball {
         }
     }
 
-        /**
+    /**
      * @brief Checks for collision with player and enemy paddles.
      * 
      * If the ball hits a paddle, its angle of movement is adjusted.
@@ -128,7 +176,7 @@ public class Ball {
         }
     }
 
-        /**
+    /**
      * @brief Adjusts the angle of the ball after a collision with a paddle.
      * 
      * The angle is randomly adjusted to ensure varied movement.
@@ -152,7 +200,7 @@ public class Ball {
         }
     }
 
-        /**
+    /**
      * @brief Checks for scoring events and handles them accordingly.
      * 
      * If the ball goes out of bounds, the appropriate player is awarded a point,
@@ -178,7 +226,8 @@ public class Ball {
             lastTotalScore = totalScore; // update the last total score
         }
     }
-        /**
+    
+    /**
      * @brief Adds an observer from the list of observers.
      * 
      * @param observer The observer to add.
@@ -249,6 +298,11 @@ public class Ball {
         return enemyScore;
     }
 
+    /**
+     * @brief Changes the ball's speed strategy based on the given level.
+     * 
+     * @param level The level of speed strategy to apply (1 for Initial, 2 for Increased, 3 for Max).
+     */
     private void changeSpeedStrategy(int level) {
         switch (level) {
             case 1:
@@ -265,7 +319,8 @@ public class Ball {
                 break;
         }
     }
-     /**
+
+    /**
      * @brief change ball color
      */
     public void setColor(Color color) {
