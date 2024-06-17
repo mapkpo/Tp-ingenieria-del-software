@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['updateposition_72',['updatePosition',['../classBall.html#aa395135fa861e9c29d41a1cdd2651ac1',1,'Ball']]],
-  ['updatescore_73',['updateScore',['../classGame.html#ae99953bfc496d6f3a1ead9d432e1c79b',1,'Game.updateScore()'],['../interfaceScoreObserver.html#a196f8d82b900c0067ad1fb9ce765e9ce',1,'ScoreObserver.updateScore()']]]
+  ['tick_73',['tick',['../classBall.html#a01729cb883a26d2a1c3c23850ec25076',1,'Ball.tick()'],['../classEnemy.html#a8b0f18b8cb4c95824a21afa672f86e8b',1,'Enemy.tick()'],['../classGame.html#a01e8510d8d8479500096aae2d818509f',1,'Game.tick()'],['../classPlayer.html#a1d981092468844b3d0ae077f50274758',1,'Player.tick()']]]
 ];

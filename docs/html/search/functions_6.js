@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main_64',['main',['../classGame.html#ae52595a27ac1b327b05db2129ad81fca',1,'Game']]]
+  ['leftpressed_64',['leftPressed',['../classPlayer.html#a3f0f26be7b74a3466b241f79609fe295',1,'Player']]]
 ];

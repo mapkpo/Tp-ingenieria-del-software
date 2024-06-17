@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['initializeangle_59',['initializeAngle',['../classBall.html#ab49efdf4e870461599f2a41bae952174',1,'Ball']]]
+  ['getenemyscore_58',['getEnemyScore',['../classBall.html#adce13f3910d3de659141a7607014c40b',1,'Ball']]],
+  ['getplayerscore_59',['getPlayerScore',['../classBall.html#a97430e6791902a53933027f0b4c3e94f',1,'Ball']]]
 ];
