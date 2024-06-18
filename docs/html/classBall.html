@@ -70,11 +70,14 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a ball in the Pong game.  
+<p>Represents a ball in a game.  
  <a href="classBall.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
+<tr class="memitem:a4de88a4d34595e9b7e05884130b6bdb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a4de88a4d34595e9b7e05884130b6bdb6">Ball</a> ()</td></tr>
+<tr class="memdesc:a4de88a4d34595e9b7e05884130b6bdb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classBall.html" title="Represents a ball in a game.">Ball</a> object.  <a href="classBall.html#a4de88a4d34595e9b7e05884130b6bdb6">More...</a><br /></td></tr>
+<tr class="separator:a4de88a4d34595e9b7e05884130b6bdb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab49efdf4e870461599f2a41bae952174"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#ab49efdf4e870461599f2a41bae952174">initializeAngle</a> ()</td></tr>
 <tr class="memdesc:ab49efdf4e870461599f2a41bae952174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the angle of movement for the ball.  <a href="classBall.html#ab49efdf4e870461599f2a41bae952174">More...</a><br /></td></tr>
 <tr class="separator:ab49efdf4e870461599f2a41bae952174"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -94,7 +97,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a9d46cef8fea088c7589f341e95817426"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks for scoring events and handles them accordingly.  <a href="classBall.html#a9d46cef8fea088c7589f341e95817426">More...</a><br /></td></tr>
 <tr class="separator:a9d46cef8fea088c7589f341e95817426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0bad2446664788525dc5f39c8e797d51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a0bad2446664788525dc5f39c8e797d51">addObserver</a> (<a class="el" href="interfaceScoreObserver.html">ScoreObserver</a> observer)</td></tr>
-<tr class="memdesc:a0bad2446664788525dc5f39c8e797d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an observer to the list of observers.  <a href="classBall.html#a0bad2446664788525dc5f39c8e797d51">More...</a><br /></td></tr>
+<tr class="memdesc:a0bad2446664788525dc5f39c8e797d51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an observer from the list of observers.  <a href="classBall.html#a0bad2446664788525dc5f39c8e797d51">More...</a><br /></td></tr>
 <tr class="separator:a0bad2446664788525dc5f39c8e797d51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50c1df65efb429afd9383aab9fce1b05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a50c1df65efb429afd9383aab9fce1b05">removeObserver</a> (<a class="el" href="interfaceScoreObserver.html">ScoreObserver</a> observer)</td></tr>
 <tr class="memdesc:a50c1df65efb429afd9383aab9fce1b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an observer from the list of observers.  <a href="classBall.html#a50c1df65efb429afd9383aab9fce1b05">More...</a><br /></td></tr>
@@ -108,35 +111,58 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:adce13f3910d3de659141a7607014c40b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#adce13f3910d3de659141a7607014c40b">getEnemyScore</a> ()</td></tr>
 <tr class="memdesc:adce13f3910d3de659141a7607014c40b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the enemy's score.  <a href="classBall.html#adce13f3910d3de659141a7607014c40b">More...</a><br /></td></tr>
 <tr class="separator:adce13f3910d3de659141a7607014c40b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcc4b7e9f0e720edaf6cd110e857ac64"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#abcc4b7e9f0e720edaf6cd110e857ac64">setColor</a> (Color color)</td></tr>
+<tr class="memdesc:abcc4b7e9f0e720edaf6cd110e857ac64"><td class="mdescLeft">&#160;</td><td class="mdescRight">change ball color  <a href="classBall.html#abcc4b7e9f0e720edaf6cd110e857ac64">More...</a><br /></td></tr>
+<tr class="separator:abcc4b7e9f0e720edaf6cd110e857ac64"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a129802833581f77a22682366eda21b1e"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a129802833581f77a22682366eda21b1e">x</a></td></tr>
-<tr class="memdesc:a129802833581f77a22682366eda21b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The x-coordinate of the ball.  <a href="classBall.html#a129802833581f77a22682366eda21b1e">More...</a><br /></td></tr>
 <tr class="separator:a129802833581f77a22682366eda21b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41ba5ff4ede4072248d5ad86c39d67b9"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a41ba5ff4ede4072248d5ad86c39d67b9">y</a></td></tr>
-<tr class="memdesc:a41ba5ff4ede4072248d5ad86c39d67b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The y-coordinate of the ball.  <a href="classBall.html#a41ba5ff4ede4072248d5ad86c39d67b9">More...</a><br /></td></tr>
 <tr class="separator:a41ba5ff4ede4072248d5ad86c39d67b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c309834a818c136165f40c06c9c8184"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a9c309834a818c136165f40c06c9c8184">dx</a></td></tr>
-<tr class="memdesc:a9c309834a818c136165f40c06c9c8184"><td class="mdescLeft">&#160;</td><td class="mdescRight">The change in x-coordinate per tick.  <a href="classBall.html#a9c309834a818c136165f40c06c9c8184">More...</a><br /></td></tr>
 <tr class="separator:a9c309834a818c136165f40c06c9c8184"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acce10e2cdbaed057c817bb504ef7d079"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#acce10e2cdbaed057c817bb504ef7d079">dy</a></td></tr>
-<tr class="memdesc:acce10e2cdbaed057c817bb504ef7d079"><td class="mdescLeft">&#160;</td><td class="mdescRight">The change in y-coordinate per tick.  <a href="classBall.html#acce10e2cdbaed057c817bb504ef7d079">More...</a><br /></td></tr>
 <tr class="separator:acce10e2cdbaed057c817bb504ef7d079"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac117c5ffc2bd1b89fe909df6e833ff8a"><td class="memItemLeft" align="right" valign="top">final double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#ac117c5ffc2bd1b89fe909df6e833ff8a">SPEED</a> = 0.7</td></tr>
-<tr class="memdesc:ac117c5ffc2bd1b89fe909df6e833ff8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The speed of the ball.  <a href="classBall.html#ac117c5ffc2bd1b89fe909df6e833ff8a">More...</a><br /></td></tr>
-<tr class="separator:ac117c5ffc2bd1b89fe909df6e833ff8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ae52b4d0d59e0fe7b862fef48d2f061"><td class="memItemLeft" align="right" valign="top">final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a0ae52b4d0d59e0fe7b862fef48d2f061">WIDTH</a> = 5</td></tr>
-<tr class="memdesc:a0ae52b4d0d59e0fe7b862fef48d2f061"><td class="mdescLeft">&#160;</td><td class="mdescRight">The width of the ball.  <a href="classBall.html#a0ae52b4d0d59e0fe7b862fef48d2f061">More...</a><br /></td></tr>
 <tr class="separator:a0ae52b4d0d59e0fe7b862fef48d2f061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a200d4c0dda1f11b5672144a28f223cec"><td class="memItemLeft" align="right" valign="top">final int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBall.html#a200d4c0dda1f11b5672144a28f223cec">HEIGHT</a> = 5</td></tr>
-<tr class="memdesc:a200d4c0dda1f11b5672144a28f223cec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The height of the ball.  <a href="classBall.html#a200d4c0dda1f11b5672144a28f223cec">More...</a><br /></td></tr>
 <tr class="separator:a200d4c0dda1f11b5672144a28f223cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a ball in the Pong game. </p>
-<p>The ball has an initial position and a starting angle of movement. The ball's position is initialized to the center of the game window. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p>Represents a ball in a game. </p>
+<p>The ball moves within the game area, interacts with paddles, and tracks scores. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4de88a4d34595e9b7e05884130b6bdb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de88a4d34595e9b7e05884130b6bdb6">&#9670;&nbsp;</a></span>Ball()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ball.Ball </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classBall.html" title="Represents a ball in a game.">Ball</a> object. </p>
+<p>Initializes the ball's position, speed strategy, initial angle, and default color. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a0bad2446664788525dc5f39c8e797d51"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0bad2446664788525dc5f39c8e797d51">&#9670;&nbsp;</a></span>addObserver()</h2>
 
@@ -161,7 +187,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Adds an observer to the list of observers. </p>
+<p>Adds an observer from the list of observers. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">observer</td><td>The observer to add. </td></tr>
@@ -408,6 +434,34 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="abcc4b7e9f0e720edaf6cd110e857ac64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abcc4b7e9f0e720edaf6cd110e857ac64">&#9670;&nbsp;</a></span>setColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Ball.setColor </td>
+          <td>(</td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>change ball color </p>
+
+</div>
+</div>
 <a id="a01729cb883a26d2a1c3c23850ec25076"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a01729cb883a26d2a1c3c23850ec25076">&#9670;&nbsp;</a></span>tick()</h2>
 
@@ -475,8 +529,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The change in x-coordinate per tick. </p>
+<p>Velocity component in the x-direction. </p>
 
 </div>
 </div>
@@ -491,8 +544,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The change in y-coordinate per tick. </p>
+<p>Velocity component in the y-direction. </p>
 
 </div>
 </div>
@@ -507,24 +559,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The height of the ball. </p>
-
-</div>
-</div>
-<a id="ac117c5ffc2bd1b89fe909df6e833ff8a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac117c5ffc2bd1b89fe909df6e833ff8a">&#9670;&nbsp;</a></span>SPEED</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">final double Ball.SPEED = 0.7</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The speed of the ball. </p>
+<p>Height of the ball. </p>
 
 </div>
 </div>
@@ -539,8 +574,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The width of the ball. </p>
+<p>Width of the ball. </p>
 
 </div>
 </div>
@@ -555,8 +589,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The x-coordinate of the ball. </p>
+<p>X-coordinate of the ball's center. </p>
 
 </div>
 </div>
@@ -571,8 +604,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>The y-coordinate of the ball. </p>
+<p>Y-coordinate of the ball's center. </p>
 
 </div>
 </div>

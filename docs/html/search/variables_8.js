@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['width_83',['WIDTH',['../classBall.html#a0ae52b4d0d59e0fe7b862fef48d2f061',1,'Ball.WIDTH()'],['../classGame.html#aea89bc468a9e0835b34b9371bcf6b70d',1,'Game.WIDTH()'],['../classPlayer.html#a8ac46f70c5663c13e723b73f8b22c269',1,'Player.WIDTH()']]]
+  ['x_85',['x',['../classBall.html#a129802833581f77a22682366eda21b1e',1,'Ball.x()'],['../classEnemy.html#ab033843a8a910b65040953a35f8d7340',1,'Enemy.x()'],['../classPlayer.html#a110f64fa77fa19df05f41bd6b1001d6d',1,'Player.x()']]]
 ];

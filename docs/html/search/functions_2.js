@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['getenemyscore_57',['getEnemyScore',['../classBall.html#adce13f3910d3de659141a7607014c40b',1,'Ball']]],
-  ['getplayerscore_58',['getPlayerScore',['../classBall.html#a97430e6791902a53933027f0b4c3e94f',1,'Ball']]]
+  ['checkpaddlecollision_55',['checkPaddleCollision',['../classBall.html#ab3a6b9caa97e9b25186764736210b229',1,'Ball']]],
+  ['checkscoring_56',['checkScoring',['../classBall.html#a9d46cef8fea088c7589f341e95817426',1,'Ball']]],
+  ['checkwallcollision_57',['checkWallCollision',['../classBall.html#a9397d018b90333d1d7dcc931e2b4df76',1,'Ball']]]
 ];

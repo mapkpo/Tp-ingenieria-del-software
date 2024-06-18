@@ -6,40 +6,110 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * @brief Represents a ball in the Pong game.
- *
- * The ball has an initial position and a starting angle of movement.
- * The ball's position is initialized to the center of the game window.
+ * @brief Interface for defining speed strategy.
+ * 
+ * This interface defines a method for retrieving the speed value
+ * based on different speed strategy implementations.
+ */
+interface SpeedStrategy {
+    /**
+     * @brief Retrieves the speed value.
+     * 
+     * @return The speed value determined by the strategy.
+     */
+    double getSpeed();
+}
+
+/**
+ * @brief Represents an initial speed strategy.
+ * 
+ * This strategy returns a fixed initial speed value.
+ */
+class InitialSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the initial speed value.
+     * 
+     * @return The initial speed value, which is 0.7.
+     */
+    @Override
+    public double getSpeed() {
+        return 0.7;
+    }
+}
+
+/**
+ * @brief Represents an increased speed strategy.
+ * 
+ * This strategy returns a medium speed value.
+ */
+class IncreasedSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the medium speed value.
+     * 
+     * @return The medium speed value, which is 1.0.
+     */
+    @Override
+    public double getSpeed() {
+        return 1.0;
+    }
+}
+
+/**
+ * @brief Represents a maximum speed strategy.
+ * 
+ * This strategy returns a maximum speed value.
+ */
+class MaxSpeedStrategy implements SpeedStrategy {
+    /**
+     * @brief Retrieves the maximum speed value.
+     * 
+     * @return The maximum speed value, which is 1.3.
+     */
+    @Override
+    public double getSpeed() {
+        return 1.3;
+    }
+}
+
+/**
+ * @brief Represents a ball in a game.
+ * 
+ * The ball moves within the game area, interacts with paddles, 
+ * and tracks scores.
  */
 public class Ball {
 
-    public double x; 					/**< @brief The x-coordinate of the ball. */
-    public double y; 					/**< @brief The y-coordinate of the ball. */
-    public double dx;					/**< @brief The change in x-coordinate per tick. */
-    public double dy;					/**< @brief The change in y-coordinate per tick. */
+    public double x; /**< X-coordinate of the ball's center. */
+    public double y; /**< Y-coordinate of the ball's center. */
+    public double dx; /**< Velocity component in the x-direction.*/
+    public double dy; /**< Velocity component in the y-direction. */
+    private Color color; /**< Color of the ball.*/
 
-    private double angle; 				/**< @brief The angle of movement for the ball. */
+    private double angle; /**< Angle of movement in degrees. */
 
-    public final double SPEED = 0.7; 	/**< @brief The speed of the ball. */
-    public final int WIDTH = 5; 		/**< @brief The width of the ball. */
-    public final int HEIGHT = 5;		/**< @brief The height of the ball. */
+    private SpeedStrategy speedStrategy; /**< Strategy for determining the ball's speed. */
+    public final int WIDTH = 5; /**< Width of the ball. */
+    public final int HEIGHT = 5; /**< Height of the ball. */
 
-    private int playerScore = 0; 		/**< @brief The player's score. */
-    private int enemyScore = 0;  		/**< @brief The enemy's score. */
-   
-	private List<ScoreObserver> observers = new ArrayList<>(); /**< @brief List of score observers. */
+    private int playerScore = 0; /**< Player's score. */
+    private int enemyScore = 0; /**< Enemy's score. */
+    private int lastTotalScore = 0; /**< Last total score recorded. */
+
+    private List<ScoreObserver> observers = new ArrayList<>(); /**< List of score observers. */
 
     /**
-     * @brief Constructs a new Ball.
+     * @brief Constructs a new Ball object.
      * 
-     * The ball's position is initialized to the center of the game window.
-     * The angle of movement is also initialized.
+     * Initializes the ball's position, speed strategy, initial angle, and default color.
      */
-    Ball() {
+    public Ball() {
         this.x = Game.WIDTH / 2;
         this.y = Game.HEIGHT / 2;
+        this.speedStrategy = new InitialSpeedStrategy(); // initial strategy 
         initializeAngle();
+        this.color = Color.WHITE; //default color
     }
+
 
     /**
      * @brief Initializes the angle of movement for the ball.
@@ -47,10 +117,10 @@ public class Ball {
      * The angle is randomly generated within a specific range to ensure varied movement.
      */
     public void initializeAngle() {
-        angle = new Random().nextInt(120 - 60) + 61;
+        angle = new Random().nextInt(100 - 80 + 1) + 80;
 
-        while (angle < 110 && angle > 70) {
-            angle = new Random().nextInt(120 - 60) + 61;
+        while (angle < 100 && angle > 80) {
+            angle = new Random().nextInt(100 - 80 + 1) + 80;
         }
 
         this.dx = Math.sin(Math.toRadians(angle));
@@ -74,8 +144,8 @@ public class Ball {
      * @brief Updates the position of the ball based on its velocity.
      */
     public void updatePosition() {
-        x += dx * SPEED;
-        y += dy * SPEED;
+        x += dx * speedStrategy.getSpeed();
+        y += dy * speedStrategy.getSpeed();
     }
 
     /**
@@ -146,10 +216,19 @@ public class Ball {
             notifyObservers();
             resetBall();
         }
-    }
 
+        // Change speed strategy every 3 points
+        int totalScore = playerScore + enemyScore;
+        if (totalScore > lastTotalScore && totalScore % 3 == 0) {
+            Random random = new Random();
+            int randomNumber = random.nextInt(3) + 1;
+            changeSpeedStrategy(randomNumber);
+            lastTotalScore = totalScore; // update the last total score
+        }
+    }
+    
     /**
-     * @brief Adds an observer to the list of observers.
+     * @brief Adds an observer from the list of observers.
      * 
      * @param observer The observer to add.
      */
@@ -197,7 +276,7 @@ public class Ball {
      */
     public void render(Graphics g) {
         tick();
-        g.setColor(new Color(255, 255, 255));
+        g.setColor(this.color);
         g.fillRect((int) x, (int) y, WIDTH, HEIGHT);
     }
 
@@ -217,5 +296,34 @@ public class Ball {
      */
     public int getEnemyScore() {
         return enemyScore;
+    }
+
+    /**
+     * @brief Changes the ball's speed strategy based on the given level.
+     * 
+     * @param level The level of speed strategy to apply (1 for Initial, 2 for Increased, 3 for Max).
+     */
+    private void changeSpeedStrategy(int level) {
+        switch (level) {
+            case 1:
+                this.speedStrategy = new InitialSpeedStrategy();
+                setColor(Color.WHITE);
+                break;
+            case 2:
+                this.speedStrategy = new IncreasedSpeedStrategy();
+                setColor(Color.YELLOW);
+                break;
+            case 3:
+                this.speedStrategy = new MaxSpeedStrategy();
+                setColor(Color.RED);
+                break;
+        }
+    }
+
+    /**
+     * @brief change ball color
+     */
+    public void setColor(Color color) {
+        this.color = color;
     }
 }

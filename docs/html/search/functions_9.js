@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['tick_71',['tick',['../classBall.html#a01729cb883a26d2a1c3c23850ec25076',1,'Ball.tick()'],['../classEnemy.html#a8b0f18b8cb4c95824a21afa672f86e8b',1,'Enemy.tick()'],['../classGame.html#a01e8510d8d8479500096aae2d818509f',1,'Game.tick()'],['../classPlayer.html#a1d981092468844b3d0ae077f50274758',1,'Player.tick()']]]
+  ['setcolor_70',['setColor',['../classBall.html#abcc4b7e9f0e720edaf6cd110e857ac64',1,'Ball']]],
+  ['start_71',['start',['../classGame.html#a19e13ca6ca40c0430c14536fd90d99aa',1,'Game']]],
+  ['startframe_72',['startFrame',['../classGame.html#a46191e904e1ca9d9bb00b1ec3821d865',1,'Game']]]
 ];

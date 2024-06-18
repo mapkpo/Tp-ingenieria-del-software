@@ -6,5 +6,5 @@
 <area shape="rect" id="node5" href="$interfaceScoreObserver.html" title="Interface for the observer pattern." alt="" coords="330,81,447,108"/>
 <area shape="rect" id="node6" href="$classEnemy.html" title="Represents an enemy in the Pong game." alt="" coords="565,81,631,108"/>
 <area shape="rect" id="node7" href="$classPlayer.html" title="Represents a player in the Pong game." alt="" coords="480,5,543,32"/>
-<area shape="rect" id="node8" href="$classBall.html" title="Represents a ball in the Pong game." alt="" coords="656,81,703,108"/>
+<area shape="rect" id="node8" href="$classBall.html" title="Represents a ball in a game." alt="" coords="656,81,703,108"/>
 </map>
