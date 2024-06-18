@@ -1,0 +1,7 @@
+<map id="Game" name="Game">
+<area shape="rect" id="node1" title="The Game class represents the main game logic and functionality." alt="" coords="169,80,230,107"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node3" title=" " alt="" coords="101,5,183,32"/>
+<area shape="rect" id="node4" title=" " alt="" coords="207,5,306,32"/>
+<area shape="rect" id="node5" href="$interfaceScoreObserver.html" title="Interface for the observer pattern." alt="" coords="330,5,447,32"/>
+</map>

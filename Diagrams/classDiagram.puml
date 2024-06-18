@@ -1,0 +1,56 @@
+@startuml classDiagram
+
+hide circle
+
+class Ball {
+    - x: double
+    - y: double
+    - angle: double
+    - SPEED: final double
+    - WIDTH: final int
+    - HEIGHT: final int
+    + Ball()
+    + tick(): void
+}
+
+class Enemy {
+    - x: double
+    - y: int
+    - DIFFICULTY: final double
+    + Enemy(x: int, y: int)
+    + tick(): void
+}
+
+class Game {
+    - isRunning: boolean
+    - player: Player
+    - enemy: Enemy
+    - ball: Ball
+    - SPEED: final int
+    - rightPressedPlayer: boolean
+    - leftPressedPlayer: boolean
+    + main(args: String[]): void
+    + start(): void
+    + tick(): void
+    + run(): void
+    + keyPressed(e: KeyEvent): void
+    + keyReleased(e: KeyEvent): void
+}
+
+class Player {
+    - WIDTH: final int
+    - HEIGHT: final int
+    - x: int
+    - y: int
+    + Player(x: int, y: int)
+    + rightPressed(): void
+    + leftPressed(): void
+    + tick(): void
+}
+
+Enemy --|> Player
+Game --> Ball
+Game --> Player
+Game --> Enemy
+
+@enduml
