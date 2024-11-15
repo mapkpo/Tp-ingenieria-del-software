@@ -1,0 +1,32 @@
+name: Horusec Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  horusec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Horusec CLI
+        run: |
+          curl -fsSL https://horusec.io/bin/install.sh | bash
+          sudo mv horusec /usr/local/bin/
+
+      - name: Run Horusec Analysis
+        env:
+          HORUSEC_CLI_FORMAT: "json"
+        run: |
+          horusec start -p Pong/Source/src -e JSON \
+            --output-file=horusec-report.json
+
+      - name: Upload Horusec Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: horusec-report
+          path: horusec-report.json
