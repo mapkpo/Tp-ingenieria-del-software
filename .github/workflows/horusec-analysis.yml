@@ -15,7 +15,7 @@ jobs:
 
       - name: Install Horusec CLI
         run: |
-          curl -fsSL https://horusec.io/bin/install.sh | bash
+          curl -fsSL https://raw.githubusercontent.com/ZupIT/horusec/main/deployments/scripts/install.sh | bash
           sudo mv horusec /usr/local/bin/
 
       - name: Run Horusec Analysis
